@@ -8,5 +8,8 @@
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1"
+  },
+  "scripts": {
+    "build": "webpack --config ./build/webpack.config.js"
   }
 }
