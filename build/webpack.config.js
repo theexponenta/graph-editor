@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const config = JSON.parse(fs.readFileSync('./buildconf.json'));
+const config = JSON.parse(fs.readFileSync(path.resolve(__dirname, './buildconf.json')));
 const is_development = config['mode'] == 'development';
 
 module.exports = {
