@@ -6,6 +6,7 @@
   "devDependencies": {
     "babel-loader": "^9.1.2",
     "css-loader": "^6.7.3",
+    "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1"
   },

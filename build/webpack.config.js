@@ -11,12 +11,20 @@ module.exports = {
     module: {
       rules: [
         { test: /\.(js)$/, use: 'babel-loader' },
-        { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+        { test: /\.(css)$/, use: ['style-loader', 'css-loader'] },
+        { test: /\.(svg)$/, type: "asset/inline"},
+        {
+          test: /\.(html)$/,
+          loader: 'html-loader',
+          options: {
+            sources: {list: [{tag: "img", attribute: "src", type: "src"}]}
+          }
+        }
       ]
     },
     output: {
       path: path.resolve(config['outDir']),
-      filename: 'main.js'
+      filename: 'main.js',
     },
     mode: config['mode'],
     plugins: [
