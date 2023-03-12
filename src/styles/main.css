@@ -12,6 +12,12 @@ html {
 
 body {
     height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+
+button {
+    cursor: pointer;
 }
 
 
@@ -24,10 +30,121 @@ nav {
 
 main {
     height: calc(100% - 64px);
+    display: flex;
 }
 
 
 .canvas-wrapper {
     height: 100%;
     overflow: hidden;
+    flex-grow: 1;
+}
+
+
+.nav-elements-container {
+    height: 100%;
+    margin-left: 20px;
+}
+
+.nav-button {
+    height: 100%;
+    background-color: white;
+    border: none;
+}
+
+
+.toolbar {
+    height: 100%;
+    display: flex;
+}
+
+
+.toolbar__toolgroups-tab {
+    height: 100%;
+    padding-top: 30px;
+    width: 74px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 1px 10px 0 rgba(0,0,0,.12), 0 4px 5px 0 rgba(0,0,0,.14);
+}
+
+.tab-button {
+    height: 72px;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    row-gap: 5px;
+}
+
+.tab-button__image {
+    width: 24px;
+}
+
+
+.toolbar__toolgroup-tab-button {
+    width: 100%;
+}
+
+.toolbar__toolgroup-tab-button.selected {
+    background-color: rgb(21, 101, 192, 0.12);
+    color: #1565C0
+}
+
+.toolbar__toolgroup-tab-button:hover {
+    background-color: #f4f4f4;
+}
+
+.toolgroup-tab-button__text {
+    font-size: 10px;
+}
+
+.toolbar__tools-tab {
+    padding: 8px 16px 14px 16px;
+    box-shadow: 5px 0px 6px -3px rgba(0,0,0,.2);
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+
+.tools-tab-section__title {
+    font-size: 100%;
+    line-height: 24px;
+}
+
+.tools-tab-section__tool-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+
+.tools-tab__tool-button {
+    color: #7F7F7F;
+    width: 80px;
+}
+
+.tools-tab__tool-button:hover {
+    color: #333333;
+}
+
+.tools-tab__tool-button.selected {
+    color: #1565C0;
+    font-weight: 600;
+}
+
+.tools-tab__close-button-container {
+    display: flex;
+    justify-content: end;
+}
+
+.tools-tab__close-button {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    background-image: url("/src/images/close-cross.svg");
+    background-repeat: no-repeat;
+    border: none;
 }

@@ -5,9 +5,49 @@
     </head>
     <body>
         <nav>
-            
+            <div class="nav-elements-container">
+                <button class="nav-button">
+                    <img src="/src/images/menu-button.svg">
+                </button>
+            </div>
         </nav>
         <main>
+            <div class="toolbar">
+                <div class="toolbar__toolgroups-tab">
+                    <button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="maintools">
+                        <img class="tab-button__image" src="/src/images/graph.svg">
+                        <div class="toolgroup-tab-button__text">Инструменты</div>
+                    </button>
+                </div>
+
+                <div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="maintools">
+                    <div class="tools-tab__close-button-container">
+                        <button class="tools-tab__close-button"></button>
+                    </div>
+                    
+                    <div class="tools-tab__section">
+                        <div class="tools-tab-section__title">Основное</div>
+
+                        <div class="tools-tab-section__tool-buttons">
+                            <button class="tab-button tools-tab__tool-button">
+                                <img class="tab-button__image" src="/src/images/move-tool.svg">
+                                <div class="tools-tab-button__text">Перемещать</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tools-tab__section">
+                        <div class="tools-tab-section__title">Граф</div>
+
+                        <div class="tools-tab-section__tool-buttons">
+                            <button class="tab-button tools-tab__tool-button">
+                                <img class="tab-button__image" src="/src/images/add-vertex-tool.svg">
+                                <div class="tools-tab-button__text">Вершина</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="canvas-wrapper">
                 <canvas id="canvas"></canvas>
             </div>
