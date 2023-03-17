@@ -1,3 +1,5 @@
+import setDOMEventHandlers from './DOMEventHandlers/main';
+import * as ApplicationDOMUtils from './utils/DOMUtils/application.js';
 
 
 export function Application() {
@@ -5,18 +7,7 @@ export function Application() {
 }
 
 
-Application.prototype.resizeCanvas = function() {
-    this.canvas.height = this.canvas.parentNode.clientHeight;
-    this.canvas.width = this.canvas.parentNode.clientWidth;
-}
-
-
-Application.prototype._setEventListeners = function() {
-    window.addEventListener("resize", this.resizeCanvas);
-}
-
-
 Application.prototype.init = function() {
-    this._setEventListeners();
-    this.resizeCanvas();
+    setDOMEventHandlers(this);
+    ApplicationDOMUtils.resizeCanvas(this.canvas);
 }
