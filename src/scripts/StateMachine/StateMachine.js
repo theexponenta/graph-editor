@@ -58,7 +58,7 @@ function StateMachine(states, initial_state) {
 }
 
 
-StateMachine.prototype.transition = function(event_name) {
+StateMachine.prototype.event = function(event_name, ...args) {
     let transition = this.states[this.current_state].getTransition(event_name);
     if (!transition)
         return;
@@ -66,7 +66,7 @@ StateMachine.prototype.transition = function(event_name) {
     if (!transition.checkCondition())
         return;
 
-    transition.performAction();
+    transition.performAction(...args);
 
     let target_state = transition.target_state;
     this.states[this.current_state].exit();

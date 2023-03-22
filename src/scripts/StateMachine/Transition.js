@@ -20,9 +20,9 @@ Transition.prototype.checkCondition = function() {
 }
 
 
-Transition.prototype.performAction = function() {
+Transition.prototype.performAction = function(...args) {
     if (this.action)
-        this.action();
+        this.action(...args);
 }
 
 
