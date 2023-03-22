@@ -24,5 +24,5 @@ export function toolButtonClick(application, event) {
     let toolname = button.getAttribute("toolname");
 
     ApplicationDOMUtils.setActiveTool(toolname);
-    // в будущем тут будет что-то подобное: aplication.setTool(toolname)
+    application.selectTool(toolname);
 }

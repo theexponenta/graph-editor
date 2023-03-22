@@ -29,5 +29,5 @@ export default function setDOMEventHandlers(application) {
     setToolgroupTabButtonClickHandlers();
     setCloseToolsTabButtonClickHandlers();
     setToolButtonClickHandlers(application);
-    window.addEventListener('resize', ApplicationDOMUtils.resizeCanvas.bind(this, application.canvas));
+    window.addEventListener('resize', ApplicationDOMUtils.resizeCanvas.bind(this, application.canvas.canvasElement()));
 }
