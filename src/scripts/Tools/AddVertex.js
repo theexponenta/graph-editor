@@ -21,7 +21,8 @@ export default function AddVertexTool() {
 }
 
 
-Object.setPrototypeOf(AddVertexTool.prototype, BaseTool.prototype);
+AddVertexTool.prototype = Object.create(BaseTool.prototype);
+AddVertexTool.prototype.constructor = AddVertexTool;
 
 
 AddVertexTool.prototype.addVertex = function(click_event, application) {
