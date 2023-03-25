@@ -25,9 +25,17 @@ function setToolButtonClickHandlers(application) {
 }
 
 
+function setResizeCanvasHandlers(application) {
+    let handler_function = Handlers.resizeCanvas.bind(this, application);
+
+    window.addEventListener('resize', handler_function);
+    window.addEventListener('load', handler_function);
+}
+
+
 export default function setDOMEventHandlers(application) {
     setToolgroupTabButtonClickHandlers();
     setCloseToolsTabButtonClickHandlers();
     setToolButtonClickHandlers(application);
-    window.addEventListener('resize', ApplicationDOMUtils.resizeCanvas.bind(this, application.canvas.canvasElement()));
+    setResizeCanvasHandlers(application);
 }

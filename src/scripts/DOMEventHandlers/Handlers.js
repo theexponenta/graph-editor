@@ -26,3 +26,13 @@ export function toolButtonClick(application, event) {
     ApplicationDOMUtils.setActiveTool(toolname);
     application.selectTool(toolname);
 }
+
+
+export function resizeCanvas(application) {
+    let canvas_element = application.canvas.canvasElement();
+    application.canvas.resize(
+        canvas_element.parentNode.clientWidth,
+        canvas_element.parentNode.clientHeight
+    );
+    application.redrawGraph();
+}

@@ -1,0 +1,11 @@
+{
+    "vertex": {
+        "lineWidth": 4,
+        "radius": 20,
+        "mainColor": "#000000",
+        "fillColor": "#ffffff",
+        "font": "25px sans-serif",
+        "textBaseline": "middle",
+        "textAlign": "center"
+    }
+}

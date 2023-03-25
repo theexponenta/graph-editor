@@ -20,12 +20,6 @@ function setAllToolgroupTabButtonsInactive() {
 }
 
 
-export function resizeCanvas(canvas) {
-    canvas.height = canvas.parentNode.clientHeight;
-    canvas.width = canvas.parentNode.clientWidth;
-}
-
-
 export function setActiveToolgroupTabButton(toolgroup_name) {
     setAllToolgroupTabButtonsInactive();
 
