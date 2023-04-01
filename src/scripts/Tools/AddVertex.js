@@ -1,4 +1,4 @@
-import { createStateMachine } from '../StateMachine/StateMachine.js';
+import createStateMachine from '../StateMachine/StateMachine.js';
 import BaseTool from './BaseTool.js';
 
 
@@ -26,7 +26,8 @@ AddVertexTool.prototype.constructor = AddVertexTool;
 
 
 AddVertexTool.prototype.addVertex = function(click_event, application) {
-    application.addVertex(click_event.offsetX, click_event.offsetY);
+    let canvasPosition = application.canvas.mousePositionToCanvasPosition(click_event.offsetX, click_event.offsetY);
+    application.addVertex(canvasPosition.x, canvasPosition.y);
 }
 
 

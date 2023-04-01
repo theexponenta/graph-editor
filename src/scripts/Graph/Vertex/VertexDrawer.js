@@ -40,9 +40,12 @@ VertexDrawer.prototype._drawVertexText = function(vertex) {
  * @param {Vertex} vertex Vertex to draw
  */
 VertexDrawer.prototype.drawVertex = function(vertex) {
+    let fill_style = vertex.canvasProperties.highlited ? vertexStyles['highlightedFillColor'] :
+        vertexStyles['defaultFillColor'];
+
     this.canvas.setStyles({
         strokeStyle: vertexStyles['mainColor'],
-        fillStyle: vertexStyles['fillColor'],
+        fillStyle: fill_style,
         lineWidth: vertexStyles['lineWidth'],
         font: vertexStyles['font'],
         textBaseline: vertexStyles['textBaseline'],

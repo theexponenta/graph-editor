@@ -1,6 +1,8 @@
-import AddVertex from './AddVertex.js';
+import AddVertexTool from './AddVertex.js';
+import MoveTool from './MoveTool.js';
 
 
 export const tools = {
-    "add_vertex": AddVertex
+    "move": MoveTool,
+    "add_vertex": AddVertexTool
 }

@@ -29,7 +29,7 @@ function transformStatesToClassInstances(states) {
 }
 
 
-export function createStateMachine(configurationObject) {
+export default function createStateMachine(configurationObject) {
     if (!configurationObject.hasOwnProperty('initial'))
         throw new MissingConfigurationParameterError("initial");
 

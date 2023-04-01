@@ -1,8 +1,14 @@
+import Point from "./Point";
 
 
 export default function CanvasFacade(canvas_element) {
     this.canvas = canvas_element;
     this.styles = {};
+
+    this.scale = 1;
+
+    this.translateX = 0;
+    this.translateY = 0;
 }
 
 
@@ -21,11 +27,55 @@ CanvasFacade.prototype.removeEventListener = function() {
 }
 
 
+CanvasFacade.prototype._resetContext = function(context) {
+    context
+}
+
+
 CanvasFacade.prototype.get2DContext = function() {
     let context = this.canvas.getContext('2d');
+    context.resetTransform();
     this._setContextStyles(context, this.styles);
+    context.translate(this.translateX, this.translateY);
+    context.scale(this.scale, this.scale);
 
     return context;
+}
+
+
+CanvasFacade.prototype.setTranslateValues = function(x, y) {
+    this.translateX = x;
+    this.translateY = y;
+}
+
+
+CanvasFacade.prototype.incrementTranslateValues = function(incrementX, incrementY) {
+    this.setTranslateValues(this.translateX + incrementX, this.translateY + incrementY);
+}
+
+
+/**
+ * 
+ * @param {Number} coordinate_value 
+ * @param {Number} scale_value 
+ */
+CanvasFacade.prototype.scaleCoordinate = function(coordinate_value) {
+    return coordinate_value / this.scale;
+}
+
+
+/**
+ * 
+ * @param {Number} x 
+ * @param {Number} y 
+ * 
+ * Coordinates of mouse pointer relative to the canvas
+ */
+CanvasFacade.prototype.mousePositionToCanvasPosition = function(x, y) {
+    return new Point(
+        this.scaleCoordinate(x - this.translateX),
+        this.scaleCoordinate(y - this.translateY)
+    );
 }
 
 
@@ -43,7 +93,7 @@ CanvasFacade.prototype.fillText = function(text, x, y, max_width = undefined) {
 
 CanvasFacade.prototype.clear = function() {
     let context = this.get2DContext();
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    context.clearRect(-this.translateX, -this.translateY, this.canvas.width, this.canvas.height);
 }
 
 
