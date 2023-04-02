@@ -78,8 +78,8 @@ MoveTool.prototype.moveVertex = function(application, vertex, mousemove_event) {
 
 MoveTool.prototype.moveCanvas = function(canvas, mousemove_event) {
     canvas.incrementTranslateValues(
-        canvas.scaleCoordinate(mousemove_event.movementX),
-        canvas.scaleCoordinate(mousemove_event.movementY),
+        mousemove_event.movementX,
+        mousemove_event.movementY,
     );
 }
 
