@@ -43,6 +43,28 @@ CanvasFacade.prototype.get2DContext = function() {
 }
 
 
+CanvasFacade.prototype.setScale = function(scale_value) {
+    this.scale = scale_value;
+}
+
+
+CanvasFacade.prototype.multiplyScale = function(scale_factor) {
+    this.setScale(this.scale * scale_factor);
+}
+
+
+CanvasFacade.prototype.mouseRelativeScale = function(scale_factor, mouse_x, mouse_y) {
+    let positionBefore = this.mousePositionToCanvasPosition(mouse_x, mouse_y);
+    this.multiplyScale(scale_factor);
+    let positionAfter = this.mousePositionToCanvasPosition(mouse_x, mouse_y);
+
+    this.incrementTranslateValues(
+        (positionAfter.x - positionBefore.x) * this.scale,
+        (positionAfter.y - positionBefore.y) * this.scale,
+    )
+}
+
+
 CanvasFacade.prototype.setTranslateValues = function(x, y) {
     this.translateX = x;
     this.translateY = y;

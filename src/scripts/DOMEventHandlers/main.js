@@ -38,4 +38,5 @@ export default function setDOMEventHandlers(application) {
     setCloseToolsTabButtonClickHandlers();
     setToolButtonClickHandlers(application);
     setResizeCanvasHandlers(application);
+    application.canvas.addEventListener('wheel', Handlers.scaleCanvas.bind(this, application));
 }

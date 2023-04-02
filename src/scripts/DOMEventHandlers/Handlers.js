@@ -1,5 +1,6 @@
 import * as ApplicationDOMUtils from '../utils/DOMUtils/application.js';
 import * as CommonDOMUtils from '../utils/DOMUtils/common.js';
+import * as canvasStyles from '../Graph/canvasStyles.json';
 
 
 export function toolgroupTabButtonClick(event) {
@@ -34,5 +35,15 @@ export function resizeCanvas(application) {
         canvas_element.parentNode.clientWidth,
         canvas_element.parentNode.clientHeight
     );
+    application.redrawGraph();
+}
+
+
+export function scaleCanvas(application, wheel_event) {
+    let scale_factor = canvasStyles['scaling']['scaleFactor'];
+    if (wheel_event.deltaY > 0)
+        scale_factor = 1 / scale_factor;
+
+    application.canvas.mouseRelativeScale(scale_factor, wheel_event.offsetX, wheel_event.offsetY);
     application.redrawGraph();
 }

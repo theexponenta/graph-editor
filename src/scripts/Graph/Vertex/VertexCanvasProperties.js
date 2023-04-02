@@ -7,4 +7,5 @@
 export default function VertexCanvasProperties(positionX, positionY) {
     this.positionX = positionX;
     this.positionY = positionY;
+    this.highlited = false;
 }
