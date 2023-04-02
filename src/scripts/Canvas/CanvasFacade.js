@@ -93,7 +93,12 @@ CanvasFacade.prototype.fillText = function(text, x, y, max_width = undefined) {
 
 CanvasFacade.prototype.clear = function() {
     let context = this.get2DContext();
-    context.clearRect(-this.translateX, -this.translateY, this.canvas.width, this.canvas.height);
+    context.clearRect(
+        this.scaleCoordinate(-this.translateX),
+        this.scaleCoordinate(-this.translateY),
+        this.scaleCoordinate(this.canvas.width),
+        this.scaleCoordinate(this.canvas.height)
+    );
 }
 
 
