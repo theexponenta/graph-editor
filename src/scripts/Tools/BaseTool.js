@@ -1,7 +1,8 @@
 import { EventListenerInfo } from "./EventListenerInfo.js";
 
 
-export default function BaseTool(state_machine) {
+export default function BaseTool(name, state_machine) {
+    this.name = name;
     this.state_machine = state_machine;
     this.event_listeners = [];
 }

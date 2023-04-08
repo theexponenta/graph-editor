@@ -17,7 +17,7 @@ export default function AddVertexTool() {
         }
     });
 
-    BaseTool.call(this, state_machine);
+    BaseTool.call(this, "add_vertex", state_machine);
 }
 
 

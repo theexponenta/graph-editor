@@ -31,7 +31,7 @@ export default function MoveTool() {
         }
     });
 
-    BaseTool.call(this, state_machine);
+    BaseTool.call(this, "move", state_machine);
     this.moving_object = null;
 }
 
