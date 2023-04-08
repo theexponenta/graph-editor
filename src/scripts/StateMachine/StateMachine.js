@@ -63,10 +63,13 @@ StateMachine.prototype.event = function(event_name, ...args) {
     if (!transition)
         return;
 
-    if (!transition.checkCondition())
+    if (!transition.checkPreCondition())
         return;
 
     transition.performAction(...args);
+
+    if (!transition.checkPostCondition())
+        return;
 
     let target_state = transition.target_state;
     this.states[this.current_state].exit();

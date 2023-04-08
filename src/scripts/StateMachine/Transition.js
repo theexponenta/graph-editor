@@ -4,19 +4,30 @@ import {
 } from '../exceptions/StateMachineExceptions.js';
 
 
-export function Transition(event_name, target_state, condition, action) {
+export function Transition(event_name, target_state, pre_condition, post_condition, action) {
     this.event_name = event_name;
     this.target_state = target_state;
-    this.condition = condition;
+    this.pre_condition = pre_condition;
+    this.post_condition = post_condition;
     this.action = action;
 }
 
 
-Transition.prototype.checkCondition = function() {
-    if (this.condition)
-        return this.condition();
+Transition.prototype._checkCondition = function(condition) {
+    if (condition)
+        return condition();
 
     return true;
+}
+
+
+Transition.prototype.checkPreCondition = function() {
+    return this._checkCondition(this.pre_condition);
+}
+
+
+Transition.prototype.checkPostCondition = function() {
+    return this._checkCondition(this.post_condition);
 }
 
 
@@ -48,8 +59,9 @@ Transition.create = function(event_name, object) {
             typeof object
         );
 
-    let condition = object.condition || null;
+    let pre_condition = object.preCondition || null;
+    let post_condition = object.postCondition || null;
     let action = object.action || null;
     
-    return new Transition(event_name, target, condition, action);
+    return new Transition(event_name, target, pre_condition, post_condition, action);
 }
