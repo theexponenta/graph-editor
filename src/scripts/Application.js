@@ -1,8 +1,8 @@
 import setDOMEventHandlers from './DOMEventHandlers/main';
-import * as ApplicationDOMUtils from './utils/DOMUtils/application.js';
 import GraphCanvasFacade from './Canvas/GraphCanvasFacade.js';
 import { tools } from './Tools/tools.js';
 import Vertex from './Graph/Vertex/Vertex';
+import Edge from './Graph/Edge/Edge.js';
 import ApplicationIDSequences from './ApplicationIDSequences';
 import Graph from './Graph/Graph';
 
@@ -39,5 +39,13 @@ Application.prototype.addVertex = function(x, y) {
     let vertex = new Vertex(this.sequences.vertex_id, x, y);
     this.graph.addVertex(vertex);
     this.sequences.incrementVertexId();
+    this.redrawGraph();
+}
+
+
+Application.prototype.addEdge = function(vertex1, vertex2, oriented, weight) {
+    let edge = new Edge(this.sequences.edge_id, vertex1, vertex2, oriented, weight)
+    this.graph.addEdge(edge);
+    this.sequences.incrementEdgeId();
     this.redrawGraph();
 }

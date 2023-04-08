@@ -1,5 +1,4 @@
 import * as Handlers from './Handlers.js'
-import * as ApplicationDOMUtils from '../utils/DOMUtils/application.js';
 
 
 function setToolgroupTabButtonClickHandlers() {
@@ -33,9 +32,18 @@ function setResizeCanvasHandlers(application) {
 }
 
 
+function disableToolInputPromptFormsSubmit() {
+    let prevent_default_function = (e) => e.preventDefault();
+    let tool_input_prompt_forms = document.getElementsByClassName("tool-input-prompt-form");
+    for (let tool_input_prompt_form of tool_input_prompt_forms)
+        tool_input_prompt_form.addEventListener('submit', prevent_default_function);
+}
+
+
 export default function setDOMEventHandlers(application) {
     setToolgroupTabButtonClickHandlers();
     setCloseToolsTabButtonClickHandlers();
+    disableToolInputPromptFormsSubmit();
     setToolButtonClickHandlers(application);
     setResizeCanvasHandlers(application);
     application.canvas.addEventListener('wheel', Handlers.scaleCanvas.bind(this, application));

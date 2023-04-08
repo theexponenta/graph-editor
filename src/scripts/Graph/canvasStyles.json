@@ -11,5 +11,18 @@
         "font": "25px sans-serif",
         "textBaseline": "middle",
         "textAlign": "center"
+    },
+    "edge": {
+        "width": 6,
+        "arrowSide": 20,
+        "defaultColor": "gray",
+        "weightTextBackgroundColor": "white",
+        "weightTextRectangleBorderWidth": 3,
+        "weightTextColor": "black",
+        "fontStyles": {
+            "font": "23px sans-serif",
+            "textBaseline": "middle",
+            "textAlign": "center"
+        }
     }
 }

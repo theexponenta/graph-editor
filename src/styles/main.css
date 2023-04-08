@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    z-index: 1;
 }
 
 
@@ -20,6 +21,22 @@ button {
     cursor: pointer;
 }
 
+/* 
+----------------------------
+Убрать стрелки на input[type-number] в разных браузерах
+*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ---------------------------- */
 
 nav {
     background-color: #fff;
@@ -38,6 +55,7 @@ main {
     height: 100%;
     overflow: hidden;
     flex-grow: 1;
+    z-index: 0;
 }
 
 
@@ -77,6 +95,17 @@ main {
     border: none;
     row-gap: 5px;
 }
+
+
+.close-button {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    background-image: url("/src/images/close-cross.svg");
+    background-repeat: no-repeat;
+    border: none;
+}
+
 
 .tab-button__image {
     width: 24px;
@@ -144,11 +173,105 @@ main {
     justify-content: end;
 }
 
-.tools-tab__close-button {
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    background-image: url("/src/images/close-cross.svg");
-    background-repeat: no-repeat;
+
+.tool-input-prompt-forms {
+    z-index: 2;
+}
+
+.tool-input-prompt-form-container {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.tool-input-prompt-form-container.active {
+    display: flex;
+}
+
+.tool-input-prompt-form-container::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.3;
+    z-index: 2;
+}
+
+.tool-input-prompt-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background-color: white;
+    padding: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 5px;
+    z-index: 3;
+}
+
+.tool-input-prompt-form__close-button {
+    align-self: flex-end;
+}
+
+.tool-input-prompt-form__section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.tool-input-prompt-form-section__title {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.tool-input-prompt-form__radio-button-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.tool-input-prompt-form__input {
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 3px;
+    height: 20px;
+    outline: none;
+    padding-left: 5px;
+}
+
+.tool-input-prompt-form__submit-button {
+    width: 80px;
     border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #1565C0;
+    align-self: flex-end;
+    color: white;
+}
+
+
+.add-edge-prompt-window__edge-has-weight {
+    display: flex;
+    column-gap: 20px;
+}
+
+.add-edge-prompt-window__edge-oriented {
+    display: flex;
+    column-gap: 20px;
+}
+
+.add-edge-prompt-window__edge-weight-input {
+    display: none;
+}
+
+.add-edge-prompt-window__edge-weight-input.active {
+    display: inline-block;
 }

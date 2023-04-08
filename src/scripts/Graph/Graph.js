@@ -13,3 +13,8 @@ export default function Graph() {
 Graph.prototype.addVertex = function(vertex) {
     this.vertices.push(vertex);
 }
+
+
+Graph.prototype.addEdge = function(edge) {
+    this.edges.push(edge);
+}

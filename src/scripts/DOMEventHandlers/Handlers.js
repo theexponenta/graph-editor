@@ -1,4 +1,4 @@
-import * as ApplicationDOMUtils from '../utils/DOMUtils/application.js';
+import * as toolbarUtils from '../utils/DOMUtils/application/toolbar.js';
 import * as CommonDOMUtils from '../utils/DOMUtils/common.js';
 import * as canvasStyles from '../Graph/canvasStyles.json';
 
@@ -7,7 +7,7 @@ export function toolgroupTabButtonClick(event) {
     let button = event.currentTarget;
     let toolgroup_name = button.getAttribute('toolgroup-name');
     
-    ApplicationDOMUtils.openOrCloseToolsTab(toolgroup_name);
+    toolbarUtils.openOrCloseToolsTab(toolgroup_name);
 }
 
 
@@ -16,7 +16,7 @@ export function closeToolsTabButtonClick(event) {
     let tools_tab = CommonDOMUtils.getAncestorMatchingSelector(button, ".toolbar__tools-tab");
     let toolgroup_name = tools_tab.getAttribute('toolgroup-name');
 
-    ApplicationDOMUtils.closeToolsTab(toolgroup_name);
+    toolbarUtils.closeToolsTab(toolgroup_name);
 }
 
 
@@ -24,7 +24,7 @@ export function toolButtonClick(application, event) {
     let button = event.currentTarget;
     let toolname = button.getAttribute("toolname");
 
-    ApplicationDOMUtils.setActiveTool(toolname);
+    toolbarUtils.setActiveTool(toolname);
     application.selectTool(toolname);
 }
 

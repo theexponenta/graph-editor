@@ -7,6 +7,8 @@ export default function CanvasFacade(canvas_element) {
 
     this.scale = 1;
 
+    this.rotate_angle = 0;
+
     this.translateX = 0;
     this.translateY = 0;
 }
@@ -27,19 +29,30 @@ CanvasFacade.prototype.removeEventListener = function() {
 }
 
 
-CanvasFacade.prototype._resetContext = function(context) {
-    context
-}
-
-
 CanvasFacade.prototype.get2DContext = function() {
     let context = this.canvas.getContext('2d');
     context.resetTransform();
     this._setContextStyles(context, this.styles);
     context.translate(this.translateX, this.translateY);
+    context.rotate(this.rotate_angle);
     context.scale(this.scale, this.scale);
 
     return context;
+}
+
+
+/**
+ * Rotate around origin point
+ * @param {Number} angle 
+ * @param {Point} origin 
+ */
+CanvasFacade.prototype.setRotate = function(angle) {
+    this.rotate_angle = angle;
+}
+
+
+CanvasFacade.prototype.resetRotate = function() {
+    this.rotate_angle = 0;
 }
 
 
@@ -107,6 +120,12 @@ CanvasFacade.prototype.resize = function(width, height) {
 }
 
 
+CanvasFacade.prototype.fillRect = function(x, y, width, height) {
+    let context = this.get2DContext();
+    context.fillRect(x, y, width, height);
+}
+
+
 CanvasFacade.prototype.fillText = function(text, x, y, max_width = undefined) {
     let context = this.get2DContext();
     context.fillText(text, x, y, max_width);
@@ -170,4 +189,22 @@ CanvasFacade.prototype.fillCircle = function(x, y, radius) {
     let context = this.get2DContext();
     this._circle(context, x, y, radius);
     context.fill();
+}
+
+
+CanvasFacade.prototype.fillTriangle = function(point1, point2, point3) {
+    let context = this.get2DContext();
+    context.beginPath();
+    context.moveTo(point1.x, point1.y);
+    context.lineTo(point2.x, point2.y);
+    context.lineTo(point3.x, point3.y);
+    context.moveTo(point2.x, point2.y);
+    context.lineTo(point3.x, point3.y);
+    context.fill();
+}
+
+
+CanvasFacade.prototype.measureText = function(text) {
+    let context = this.get2DContext();
+    return context.measureText(text);
 }

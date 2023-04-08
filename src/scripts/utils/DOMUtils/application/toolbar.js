@@ -1,6 +1,7 @@
 // Функции для работы с DOM-структурой конкретно самого приложения
 
-import * as CommonDOMUtils from './common.js';
+import * as CommonDOMUtils from '../common.js';
+import * as common from './common.js';
 
 
 function getToolsTab(toolgroup_name) {
@@ -15,8 +16,7 @@ function getToolgroupTabButton(toolgroup_name) {
 
 function setAllToolgroupTabButtonsInactive() {
     let buttons = document.getElementsByClassName('toolbar__toolgroup-tab-button');
-    for (let button of buttons)
-        button.classList.remove("active");
+    common.makeElementsInactive(buttons);
 }
 
 
@@ -24,13 +24,13 @@ export function setActiveToolgroupTabButton(toolgroup_name) {
     setAllToolgroupTabButtonsInactive();
 
     let button = getToolgroupTabButton(toolgroup_name);
-    button.classList.add("active");
+    common.makeElementActive(button);
 }
 
 
 export function openToolsTab(toolgroup_name) {
     let tools_tab = getToolsTab(toolgroup_name);
-    tools_tab.classList.add("active");   
+    common.makeElementActive(tools_tab);   
 
     setActiveToolgroupTabButton(toolgroup_name); 
 }
@@ -38,7 +38,7 @@ export function openToolsTab(toolgroup_name) {
 
 export function closeToolsTab(toolgroup_name) {
     let tools_tab = getToolsTab(toolgroup_name);
-    tools_tab.classList.remove("active");
+    common.makeElementInactive(tools_tab);
 
     setAllToolgroupTabButtonsInactive(); 
 }
@@ -46,12 +46,7 @@ export function closeToolsTab(toolgroup_name) {
 
 export function openOrCloseToolsTab(toolgroup_name) {
     let tools_tab = getToolsTab(toolgroup_name);
-    let is_opened = tools_tab.classList.contains("active");
-
-    if (is_opened)
-        closeToolsTab(toolgroup_name);
-    else
-        openToolsTab(toolgroup_name);
+    common.makeElementActiveOrInactive(tools_tab);
 }
 
 
@@ -62,8 +57,7 @@ function getToolButton(toolname) {
 
 function setAllToolButtonsInactive() {
     let tool_buttons = document.getElementsByClassName('tools-tab__tool-button');
-    for (let button of tool_buttons)
-        button.classList.remove("active");
+    common.makeElementsInactive(tool_buttons);
 }
 
 
@@ -71,5 +65,5 @@ export function setActiveTool(toolname) {
     setAllToolButtonsInactive();
 
     let tool_button = getToolButton(toolname);
-    tool_button.classList.add("active");
+    common.makeElementActive(tool_button)
 }
