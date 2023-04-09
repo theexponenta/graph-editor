@@ -53,11 +53,7 @@ MoveTool.prototype.setMovingObject = function(mousedown_event, application) {
         mousedown_event.offsetY
     );
 
-    let vertex = application.canvas.getVertexOnPosition(
-        application.graph,
-        canvasMousePosition.x,
-        canvasMousePosition.y
-    );
+    let vertex = application.canvas.getVertexOnPosition(application.graph, canvasMousePosition);
 
     if (vertex) {
         this.moving_object = vertex;

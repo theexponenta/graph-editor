@@ -13,25 +13,28 @@ export default function VertexDrawer(canvas) {
 
 
 VertexDrawer.prototype._drawVertexCircle = function(vertex) {
+    let vertex_pos = vertex.position();
+    
     this.canvas.strokeCircle(
-        vertex.canvasProperties.positionX,
-        vertex.canvasProperties.positionY,
+        vertex_pos.x,
+        vertex_pos.y,
         vertexStyles['radius']
     );
 
     this.canvas.fillCircle(
-        vertex.canvasProperties.positionX,
-        vertex.canvasProperties.positionY,
+        vertex_pos.x,
+        vertex_pos.y,
         vertexStyles['radius'] - vertexStyles['lineWidth'] / 2
     );
 }
 
 
 VertexDrawer.prototype._drawVertexText = function(vertex) {
+    let vertex_pos = vertex.position();
     this.canvas.fillText(
         vertex.id.toString(),
-        vertex.canvasProperties.positionX,
-        vertex.canvasProperties.positionY
+        vertex_pos.x,
+        vertex_pos.y
     )
 }
 

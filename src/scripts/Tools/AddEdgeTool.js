@@ -78,11 +78,7 @@ AddEdgeTool.prototype.selectVertex = function(vertex_index, click_event, applica
         click_event.offsetY
     );
 
-    let vertex = application.canvas.getVertexOnPosition(
-        application.graph,
-        canvasMousePosition.x,
-        canvasMousePosition.y
-    );
+    let vertex = application.canvas.getVertexOnPosition(application.graph, canvasMousePosition);
 
     if (vertex) {
         this[`vertex${vertex_index}`] = vertex;

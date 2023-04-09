@@ -1,13 +1,16 @@
 import Point from "../Canvas/Point";
 
 
-export function distance(x1, y1, x2, y2) {
-    return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+export function distance(point1, point2) {
+    return Math.sqrt(
+        (point1.x - point2.x) * (point1.x - point2.x) +
+        (point1.y - point2.y) * (point1.y - point2.y)
+    );
 }
 
 
-export function isPointInCircle(pointX, pointY, circleCenterX, circleCenterY, radius) {
-    return distance(pointX, pointY, circleCenterX, circleCenterY) <= radius;
+export function isPointInCircle(point, circle_center_point, radius) {
+    return distance(point, circle_center_point) <= radius;
 }
 
 

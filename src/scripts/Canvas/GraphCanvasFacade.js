@@ -37,19 +37,31 @@ GraphCanvasFacade.prototype.drawGraph = function(graph) {
 }
 
 
+GraphCanvasFacade.prototype.getEdgeSlopeAngle = function(edge) {
+    let vertex1_pos = edge.vertex1.position();
+    let vertex2_pos = edge.vertex2.position();
+
+    let tan_slope_angle = (vertex1_pos.y - vertex2_pos.y) / (vertex1_pos.x - vertex2_pos.x);
+
+    let slope_angle = Math.atan(tan_slope_angle);
+    if (vertex1_pos.x >= vertex2_pos.x)
+        slope_angle += Math.PI;
+
+    return slope_angle;
+}
+
+
 /**
  * 
  * @param {Vertex} vertex 
- * @param {Number} x
- * @param {Number} y
+ * @param {Point} position 
  * 
- * (x, y) represents real postion on the canvas, not position of mouse pointer over the canvas
+ * position represents real postion on the canvas, not position of mouse pointer over the canvas
  */
-GraphCanvasFacade.prototype.isVertexOnPosition = function(vertex, x, y) {
+GraphCanvasFacade.prototype.isVertexOnPosition = function(vertex, position) {
     return isPointInCircle(
-        x, y,
-        vertex.canvasProperties.positionX,
-        vertex.canvasProperties.positionY,
+        position,
+        vertex.position(),
         canvasStyles['vertex']['radius']
     );
 }
@@ -58,14 +70,13 @@ GraphCanvasFacade.prototype.isVertexOnPosition = function(vertex, x, y) {
 /**
  * 
  * @param {Graph} graph 
- * @param {Number} x 
- * @param {Number} y
+ * @param {Point} position 
  * 
- * (x, y) represents real postion on the canvas, not position of mouse pointer over the canvas
+ * position represents real postion on the canvas, not position of mouse pointer over the canvas
  */
-GraphCanvasFacade.prototype.getVertexOnPosition = function(graph, x, y) {
+GraphCanvasFacade.prototype.getVertexOnPosition = function(graph, position) {
     for (let vertex of graph.vertices) {
-        if (this.isVertexOnPosition(vertex, x, y))
+        if (this.isVertexOnPosition(vertex, position))
             return vertex;
     }
 

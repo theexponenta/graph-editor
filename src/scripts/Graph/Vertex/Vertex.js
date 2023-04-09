@@ -1,4 +1,5 @@
 import VertexCanvasProperties from './VertexCanvasProperties.js';
+import Point from '../../Canvas/Point.js';
 
 
 /**
@@ -25,4 +26,12 @@ Vertex.prototype.unhighlight = function() {
 Vertex.prototype.move = function(movementX, movementY) {
     this.canvasProperties.positionX += movementX;
     this.canvasProperties.positionY += movementY;
+}
+
+
+Vertex.prototype.position = function() {
+    return new Point(
+        this.canvasProperties.positionX,
+        this.canvasProperties.positionY
+    );
 }

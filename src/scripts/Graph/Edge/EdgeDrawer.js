@@ -18,7 +18,7 @@ export default function EdgeDrawer(canvas) {
 
 
 EdgeDrawer.prototype.drawEdge = function(edge) {
-    this._setSlopeAngle(edge);
+    this.slope_angle = this.canvas.getEdgeSlopeAngle(edge);
 
     this.canvas.setStyles({"fillStyle": edgeStyles['defaultColor']});
     this.canvas.setRotate(this.slope_angle);
@@ -34,34 +34,16 @@ EdgeDrawer.prototype.drawEdge = function(edge) {
 }
 
 
-EdgeDrawer.prototype._setSlopeAngle = function(edge) {
-    let tan_slope_angle = 
-    (edge.vertex1.canvasProperties.positionY - edge.vertex2.canvasProperties.positionY) 
-    / (edge.vertex1.canvasProperties.positionX - edge.vertex2.canvasProperties.positionX);
-
-    let slope_angle = Math.atan(tan_slope_angle);
-    if (edge.vertex1.canvasProperties.positionX >= edge.vertex2.canvasProperties.positionX)
-        slope_angle += Math.PI;
-
-    this.slope_angle = slope_angle;
-}
-
-
 EdgeDrawer.prototype._drawEdgeRectangle = function(edge) {
+    let vertex1_pos = edge.vertex1.position();
+    let vertex2_pos = edge.vertex2.position();
+    
     let rotated_start_point = coordinatePlaneUtils.rotatePoint(
-        new Point(
-            edge.vertex1.canvasProperties.positionX,
-            edge.vertex1.canvasProperties.positionY
-        ),
+        vertex1_pos,
         -this.slope_angle
     );
 
-    let length = coordinatePlaneUtils.distance(
-        edge.vertex1.canvasProperties.positionX,
-        edge.vertex1.canvasProperties.positionY,
-        edge.vertex2.canvasProperties.positionX,
-        edge.vertex2.canvasProperties.positionY
-    );
+    let length = coordinatePlaneUtils.distance(vertex1_pos, vertex2_pos);
     if (edge.oriented)
         length -= rightTriangleHeight(edgeStyles['arrowSide']) + vertexStyles['radius'];
     
@@ -76,10 +58,7 @@ EdgeDrawer.prototype._drawEdgeRectangle = function(edge) {
 
 EdgeDrawer.prototype._drawEdgeArrow = function(edge) {
     let rotated_second_vertex_center = coordinatePlaneUtils.rotatePoint(
-        new Point(
-            edge.vertex2.canvasProperties.positionX,
-            edge.vertex2.canvasProperties.positionY
-        ),
+        edge.vertex2.position(),
         -this.slope_angle
     );
 
@@ -102,14 +81,8 @@ EdgeDrawer.prototype._drawEdgeArrow = function(edge) {
 
 EdgeDrawer.prototype._drawEdgeWeightText = function(edge) {
     let edge_center = coordinatePlaneUtils.segmentCenter(
-        new Point(
-            edge.vertex1.canvasProperties.positionX,
-            edge.vertex1.canvasProperties.positionY
-        ),
-        new Point(
-            edge.vertex2.canvasProperties.positionX,
-            edge.vertex2.canvasProperties.positionY
-        )
+        edge.vertex1.position(),
+        edge.vertex2.position()
     );
 
     this.canvas.updateStyles(edgeStyles['fontStyles']);
