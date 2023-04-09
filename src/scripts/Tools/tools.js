@@ -1,10 +1,9 @@
-import AddVertexTool from './AddVertex.js';
+import AddVertexTool from './AddVertexTool.js';
 import MoveTool from './MoveTool.js';
-import AddEdge from './AddEdge.js';
-
+import AddEdgeTool from './AddEdgeTool.js';
 
 export const tools = {
     "move": MoveTool,
     "add_vertex": AddVertexTool,
-    "add_edge": AddEdge
+    "add_edge": AddEdgeTool
 }
