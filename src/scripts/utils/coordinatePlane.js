@@ -31,3 +31,9 @@ export function segmentCenter(point1, point2) {
         (point1.y + point2.y) / 2
     );
 }
+
+
+export function isPointInRectangle(point, rectangle_top_left_point, width, height) {
+    return point.x >= rectangle_top_left_point.x && point.x <= rectangle_top_left_point.x + width
+           && point.y >= rectangle_top_left_point.y && point.y <= rectangle_top_left_point.y + height
+}

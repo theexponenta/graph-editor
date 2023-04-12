@@ -43,9 +43,20 @@ Application.prototype.addVertex = function(x, y) {
 }
 
 
+Application.prototype.deleteVertex = function(vertex_id) {
+    this.graph.deleteVertex(vertex_id);
+}
+
+
 Application.prototype.addEdge = function(vertex1, vertex2, oriented, weight) {
     let edge = new Edge(this.sequences.edge_id, vertex1, vertex2, oriented, weight)
     this.graph.addEdge(edge);
     this.sequences.incrementEdgeId();
     this.redrawGraph();
 }
+
+
+Application.prototype.deleteEdge = function(edge_id) {
+    this.graph.deleteEdge(edge_id);
+}
+

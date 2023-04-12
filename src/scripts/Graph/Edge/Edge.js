@@ -15,3 +15,8 @@ export default function Edge(id, vertex1, vertex2, oriented, weight = null) {
     this.weight = weight;
 }
 
+
+Edge.prototype.hasVertex = function(vertex_id) {
+    return this.vertex1.id == vertex_id || this.vertex2.id == vertex_id;
+}
+
