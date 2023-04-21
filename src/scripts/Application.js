@@ -1,6 +1,5 @@
 import setDOMEventHandlers from './DOMEventHandlers/main';
 import GraphCanvasFacade from './Canvas/GraphCanvasFacade.js';
-import { tools } from './Tools/tools.js';
 import Vertex from './Graph/Vertex/Vertex';
 import Edge from './Graph/Edge/Edge.js';
 import ApplicationIDSequences from './ApplicationIDSequences';
@@ -23,16 +22,18 @@ export function Application() {
 Application.prototype.init = function() {
     setDOMEventHandlers(this);
     setInterval(this.saveToLocalStorage.bind(this), applicationConfig['autosaveInterval']);
-    this.redrawGraph();
 }
 
 
-Application.prototype.selectTool = function(toolaname) {
+Application.prototype.selectTool = function(tool) {
+    tool.activate(this);
+    if (tool.single_action)
+        return;
+    
     if (this.selected_tool)
         this.selected_tool.deactivate();
 
-    this.selected_tool = new tools[toolaname]();
-    this.selected_tool.activate(this);
+    this.selected_tool = tool;
 }
 
 
@@ -85,10 +86,16 @@ Application.prototype.toJSON = function() {
 Application.prototype.initFromJSON = function(json_string) {
     let object = JSON.parse(json_string);
     
-    this.graph = Graph.fromObject(object['graph']);
-    this.sequences = ApplicationIDSequences.fromObject(object['sequences']);
-    this.canvas = new GraphCanvasFacade(getCanvas());
-    this.canvas.initFromObject(object['canvas']);
+    let graph = Graph.fromObject(object['graph']);
+    let sequences = ApplicationIDSequences.fromObject(object['sequences']);
+    let canvas = new GraphCanvasFacade(getCanvas());
+    canvas.initFromObject(object['canvas']);
+
+    this.graph = graph;
+    this.sequences = sequences;
+    this.canvas = canvas;
+
+    this.redrawGraph();
 }
 
 

@@ -28,6 +28,12 @@ export function setActiveToolgroupTabButton(toolgroup_name) {
 }
 
 
+export function closeAllToolsTabs() {
+    let tools_tabs = document.getElementsByClassName("toolbar__tools-tab");
+    common.makeElementsInactive(tools_tabs);
+}
+
+
 export function openToolsTab(toolgroup_name) {
     let tools_tab = getToolsTab(toolgroup_name);
     common.makeElementActive(tools_tab);   
@@ -46,6 +52,7 @@ export function closeToolsTab(toolgroup_name) {
 
 export function openOrCloseToolsTab(toolgroup_name) {
     let tools_tab = getToolsTab(toolgroup_name);
+    closeAllToolsTabs();
     common.makeElementActiveOrInactive(tools_tab);
 }
 

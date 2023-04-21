@@ -1,12 +1,12 @@
 import * as toolbarUtils from '../utils/DOMUtils/application/toolbar.js';
 import * as CommonDOMUtils from '../utils/DOMUtils/common.js';
 import * as canvasStyles from '../Graph/canvasStyles.json';
+import { tools } from '../Tools/tools.js';
 
 
 export function toolgroupTabButtonClick(event) {
     let button = event.currentTarget;
     let toolgroup_name = button.getAttribute('toolgroup-name');
-    
     toolbarUtils.openOrCloseToolsTab(toolgroup_name);
 }
 
@@ -23,9 +23,12 @@ export function closeToolsTabButtonClick(event) {
 export function toolButtonClick(application, event) {
     let button = event.currentTarget;
     let toolname = button.getAttribute("toolname");
+    let tool = new tools[toolname]();
 
-    toolbarUtils.setActiveTool(toolname);
-    application.selectTool(toolname);
+    if (tool.single_action === false)
+        toolbarUtils.setActiveTool(toolname);
+    
+    application.selectTool(tool);
 }
 
 
