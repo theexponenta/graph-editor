@@ -1,5 +1,7 @@
 import VertexCanvasProperties from './VertexCanvasProperties.js';
 import Point from '../../Canvas/Point.js';
+import  { objectHasOwnProperties } from '../../utils/mics.js';
+import { ObjectMissingSomeOfRequiredPropertiesError } from '../../exceptions/deserialization.js';
 
 
 /**
@@ -34,4 +36,21 @@ Vertex.prototype.position = function() {
         this.canvasProperties.positionX,
         this.canvasProperties.positionY
     );
+}
+
+
+Vertex.prototype.toJSON = function() {
+    return {
+        id: this.id,
+        x: this.canvasProperties.positionX,
+        y: this.canvasProperties.positionY
+    };
+}
+
+
+Vertex.fromObject = function(object) {
+    if (!objectHasOwnProperties(object, ['id', 'x', 'y']))
+        throw new ObjectMissingSomeOfRequiredPropertiesError();
+
+    return new Vertex(object['id'], object['x'], object['y']);
 }

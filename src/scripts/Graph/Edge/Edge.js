@@ -20,3 +20,14 @@ Edge.prototype.hasVertex = function(vertex_id) {
     return this.vertex1.id == vertex_id || this.vertex2.id == vertex_id;
 }
 
+
+Edge.prototype.toJSON = function() {
+    return {
+        id: this.id,
+        vertex1: this.vertex1.id,
+        vertex2: this.vertex2.id,
+        oriented: this.oriented || undefined,
+        weight: this.weight || undefined
+    };
+}
+

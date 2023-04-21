@@ -5,10 +5,15 @@ import Vertex from './Graph/Vertex/Vertex';
 import Edge from './Graph/Edge/Edge.js';
 import ApplicationIDSequences from './ApplicationIDSequences';
 import Graph from './Graph/Graph';
+import * as applicationConfig from './applicationConfig.json';
+import { getCanvas } from './utils/DOMUtils/application/canvas';
 
 
 export function Application() {
-    this.canvas = new GraphCanvasFacade(document.getElementById("canvas"));
+    if (this.tryInitFromLocalStorage())
+        return;
+
+    this.canvas = new GraphCanvasFacade(getCanvas());
     this.sequences = new ApplicationIDSequences();
     this.graph = new Graph();
     this.selected_tool = null;
@@ -17,6 +22,8 @@ export function Application() {
 
 Application.prototype.init = function() {
     setDOMEventHandlers(this);
+    setInterval(this.saveToLocalStorage.bind(this), applicationConfig['autosaveInterval']);
+    this.redrawGraph();
 }
 
 
@@ -60,3 +67,42 @@ Application.prototype.deleteEdge = function(edge_id) {
     this.graph.deleteEdge(edge_id);
 }
 
+
+Application.prototype.saveToLocalStorage = function() {
+    localStorage.setItem("application", JSON.stringify(this));
+}
+
+
+Application.prototype.toJSON = function() {
+    return {
+        graph: this.graph,
+        canvas: this.canvas,
+        sequences: this.sequences
+    };
+}
+
+
+Application.prototype.initFromJSON = function(json_string) {
+    let object = JSON.parse(json_string);
+    
+    this.graph = Graph.fromObject(object['graph']);
+    this.sequences = ApplicationIDSequences.fromObject(object['sequences']);
+    this.canvas = new GraphCanvasFacade(getCanvas());
+    this.canvas.initFromObject(object['canvas']);
+}
+
+
+Application.prototype.tryInitFromLocalStorage = function() {
+    let saved_data = localStorage.getItem("application");
+    if (!saved_data)
+        return false;
+
+    try {
+        this.initFromJSON(saved_data);
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+
+    return true;
+}

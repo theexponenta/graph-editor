@@ -1,3 +1,5 @@
+import { ObjectMissingSomeOfRequiredPropertiesError } from "../exceptions/deserialization";
+import { objectHasOwnProperties } from "../utils/mics";
 import Point from "./Point";
 
 
@@ -11,6 +13,29 @@ export default function CanvasFacade(canvas_element) {
 
     this.translateX = 0;
     this.translateY = 0;
+}
+
+
+CanvasFacade.prototype.toJSON = function() {
+    return {
+        scale: this.scale,
+        translate: {
+            x: this.translateX,
+            y: this.translateY
+        }
+    };
+}
+
+
+CanvasFacade.prototype.initFromObject = function(object) {
+    if (!objectHasOwnProperties(object, ['scale', 'translate']))
+        throw new ObjectMissingSomeOfRequiredPropertiesError();
+
+    if (!objectHasOwnProperties(object['translate'], ['x', 'y']))
+        throw new ObjectMissingSomeOfRequiredPropertiesError();
+
+    this.setScale(object['scale']);
+    this.setTranslateValues(object['translate']['x'], object['translate']['y']);
 }
 
 

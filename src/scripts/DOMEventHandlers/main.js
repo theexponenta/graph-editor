@@ -40,11 +40,18 @@ function disableToolInputPromptFormsSubmit() {
 }
 
 
+function setSaveProgressEventHandlers(application) {
+    let listener = application.saveToLocalStorage.bind(application);
+    window.addEventListener('beforeunload', listener);
+}
+
+
 export default function setDOMEventHandlers(application) {
     setToolgroupTabButtonClickHandlers();
     setCloseToolsTabButtonClickHandlers();
     disableToolInputPromptFormsSubmit();
     setToolButtonClickHandlers(application);
     setResizeCanvasHandlers(application);
+    setSaveProgressEventHandlers(application);
     application.canvas.addEventListener('wheel', Handlers.scaleCanvas.bind(this, application));
 }
