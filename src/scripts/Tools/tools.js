@@ -1,9 +1,9 @@
-import AddVertexTool from './AddVertexTool.js';
-import MoveTool from './MoveTool.js';
-import AddEdgeTool from './AddEdgeTool.js';
-import DeleteTool from './DeleteTool.js';
-import ExportProjectTool from './ExportProjectTool.js';
-import ImportProjectTool from './ImportProjectTool.js';
+import AddVertexTool from './MainTools/AddVertexTool.js';
+import MoveTool from './MainTools/MoveTool.js';
+import AddEdgeTool from './MainTools/AddEdgeTool.js';
+import DeleteTool from './MainTools/DeleteTool.js';
+import ExportProjectTool from './ProjectTools/ExportProjectTool.js';
+import ImportProjectTool from './ProjectTools/ImportProjectTool.js';
 
 export const tools = {
     "move": MoveTool,

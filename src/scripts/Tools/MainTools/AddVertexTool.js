@@ -1,5 +1,5 @@
-import createStateMachine from '../StateMachine/StateMachine.js';
-import BaseTool from './BaseTool.js';
+import createStateMachine from '../../StateMachine/StateMachine.js';
+import BaseTool from '../BaseTool.js';
 
 
 export default function AddVertexTool() {

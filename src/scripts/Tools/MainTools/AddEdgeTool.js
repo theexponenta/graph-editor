@@ -1,10 +1,10 @@
-import createStateMachine from '../StateMachine/StateMachine.js';
-import BaseTool from './BaseTool.js';
-import * as toolPromptFormsUtils from '../utils/DOMUtils/application/toolPromptForms.js';
+import createStateMachine from '../../StateMachine/StateMachine.js';
+import BaseTool from '../BaseTool.js';
+import * as toolPromptFormsUtils from '../../utils/DOMUtils/application/toolPromptForms.js';
 import { 
     makeElementActive,
     makeElementInactive
-} from '../utils/DOMUtils/application/common.js'
+} from '../../utils/DOMUtils/application/common.js'
 
 
 export default function AddEdgeTool() {

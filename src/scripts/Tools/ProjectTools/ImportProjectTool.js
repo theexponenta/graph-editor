@@ -1,5 +1,5 @@
-import BaseTool from './BaseTool.js';
-import { downloadFile } from '../utils/mics.js';
+import BaseTool from '../BaseTool.js';
+import { downloadFile } from '../../utils/mics.js';
 
 
 export default function ImportProjectTool() {

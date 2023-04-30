@@ -1,7 +1,7 @@
-import BaseTool from './BaseTool.js';
-import createStateMachine from '../StateMachine/StateMachine.js';
-import Vertex from '../Graph/Vertex/Vertex.js';
-import CanvasFacade from '../Canvas/GraphCanvasFacade';
+import BaseTool from '../BaseTool.js';
+import createStateMachine from '../../StateMachine/StateMachine.js';
+import Vertex from '../../Graph/Vertex/Vertex.js';
+import CanvasFacade from '../../Canvas/GraphCanvasFacade.js';
 
 
 export default function MoveTool() {
