@@ -5,21 +5,7 @@ import Edge from '../../Graph/Edge/Edge.js';
 
 
 export default function DeleteTool() {
-    let state_machine = createStateMachine({
-        initial: 'idle',
-        states: {
-            idle: {
-                transitions: {
-                    canvasClick: {
-                        target: 'idle',
-                        action: this.deleteObject
-                    }
-                }
-            }
-        }
-    });
-
-    BaseTool.call(this, "delete", state_machine);
+    BaseTool.call(this, "delete", null);
 }
 
 
@@ -28,11 +14,11 @@ DeleteTool.prototype.constructor = DeleteTool;
 
 
 DeleteTool.prototype.activate = function(application) {
-    this.setEventListener(application.canvas, 'click', 'canvasClick', application);
+    this.setEventListener(application.canvas, 'click', this.deleteObject.bind(this, application));
 }
 
 
-DeleteTool.prototype.deleteObject = function(click_event, application) {
+DeleteTool.prototype.deleteObject = function(application, click_event) {
     let canvas_position = application.canvas.mousePositionToCanvasPosition(
         click_event.offsetX,
         click_event.offsetY

@@ -58,14 +58,14 @@ AddEdgeTool.prototype.constructor = AddEdgeTool;
 
 
 AddEdgeTool.prototype.activate = function(application) {
-    this.setEventListener(application.canvas, 'click', 'canvasClick', application);
+    this.setStateMachineEventListener(application.canvas, 'click', 'canvasClick', application);
     
     let input_prompt_form = toolPromptFormsUtils.getToolInputPromptForm(this.name);
-    this.setEventListener(input_prompt_form, 'submit', 'submit', application);
-    this.setEventListener(input_prompt_form, 'change', 'formChanged');
+    this.setStateMachineEventListener(input_prompt_form, 'submit', 'submit', application);
+    this.setStateMachineEventListener(input_prompt_form, 'change', 'formChanged');
 
     let close_button = toolPromptFormsUtils.getToolInputPromptFormCloseButton(this.name);
-    this.setEventListener(close_button, 'click', 'cancel');
+    this.setStateMachineEventListener(close_button, 'click', 'cancel');
 }
 
 

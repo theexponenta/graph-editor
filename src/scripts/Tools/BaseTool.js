@@ -11,12 +11,16 @@ export default function BaseTool(name, state_machine=null, single_action=false) 
 
 // метод назван setEventListener, чтобы не путать его
 // со стандартным addEventListener
-BaseTool.prototype.setEventListener = function (target, type, state_machine_event, ...args) {
-    let self = this;
-    let listener = (e) => self.state_machine.event(state_machine_event, e, ...args);
-
+BaseTool.prototype.setEventListener = function (target, type, listener) {
     target.addEventListener(type, listener);
     this.event_listeners.push(new EventListenerInfo(target, type, listener));
+}
+
+
+BaseTool.prototype.setStateMachineEventListener = function (target, type, state_machine_event, ...args) {
+    let self = this;
+    let listener = (e) => self.state_machine.event(state_machine_event, e, ...args);
+    this.setEventListener(target, type, listener);
 }
 
 

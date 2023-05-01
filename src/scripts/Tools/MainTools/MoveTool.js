@@ -41,9 +41,9 @@ MoveTool.prototype.constructor = MoveTool;
 
 
 MoveTool.prototype.activate = function(application) {
-    this.setEventListener(application.canvas, 'mousedown', 'canvasMousedown', application);
-    this.setEventListener(application.canvas, 'mouseup', 'canvasMouseup', application);
-    this.setEventListener(application.canvas, 'mousemove', 'canvasMousemove', application);
+    this.setStateMachineEventListener(application.canvas, 'mousedown', 'canvasMousedown', application);
+    this.setStateMachineEventListener(application.canvas, 'mouseup', 'canvasMouseup', application);
+    this.setStateMachineEventListener(application.canvas, 'mousemove', 'canvasMousemove', application);
 }
 
 
