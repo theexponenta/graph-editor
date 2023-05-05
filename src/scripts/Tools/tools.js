@@ -4,6 +4,7 @@ import AddEdgeTool from './MainTools/AddEdgeTool.js';
 import DeleteTool from './MainTools/DeleteTool.js';
 import ExportProjectTool from './ProjectTools/ExportProjectTool.js';
 import ImportProjectTool from './ProjectTools/ImportProjectTool.js';
+import BFSTool from './AlgorithmTools/BFSTool/BFSTool.js';
 
 export const tools = {
     "move": MoveTool,
@@ -11,5 +12,6 @@ export const tools = {
     "add_edge": AddEdgeTool,
     "delete": DeleteTool,
     "export_project": ExportProjectTool,
-    "import_project": ImportProjectTool
+    "import_project": ImportProjectTool,
+    "bfs": BFSTool
 }

@@ -13,6 +13,7 @@ module.exports = {
         { test: /\.(js)$/, use: 'babel-loader' },
         { test: /\.(css)$/, use: ['style-loader', 'css-loader'] },
         { test: /\.(svg)$/, type: "asset/inline"},
+        { test: /\.(template)$/, type: "asset/source" },
         {
           test: /\.(html)$/,
           loader: 'html-loader',

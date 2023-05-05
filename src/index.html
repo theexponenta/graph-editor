@@ -4,132 +4,150 @@
         <title>Graph Editor</title>
     </head>
     <body>
-        <nav>
-            <div class="nav-elements-container">
-                <button class="nav-button">
-                    <img src="/src/images/menu-button.svg">
-                </button>
-            </div>
-        </nav>
         <main>
-            <div class="tool-input-prompt-forms">
-                <div class="tool-input-prompt-form-container">
-                    <form class="tool-input-prompt-form" toolname="add_edge">
-                        <button type="button" class="close-button tool-input-prompt-form__close-button"></button>
+			<div class="alert-container">
+				<div class="alert-message" id="alert-message"></div>
+			</div>
+            
+			<div class="work-panel">
+				<div class="tool-input-prompt-forms">
+					<div class="tool-input-prompt-form-container">
+						<form class="tool-input-prompt-form" toolname="add_edge">
+							<button type="button" class="close-button tool-input-prompt-form__close-button"></button>
 
-                        <div class="tool-input-prompt-form__section">
-                            <span class="tool-input-prompt-form-section__title">Вес ребра</span>
-                            <div class="add-edge-prompt-window__edge-has-weight">
-                                <div class="tool-input-prompt-form__radio-button-container">
-                                    <input type="radio" class="tool-input-prompt-form__radio-button" value="1" name="edge_has_weight">
-                                    <span class="tool-input-prompt-form__radio-button-label">Нагруженное</span>
-                                </div>
+							<div class="tool-input-prompt-form__section">
+								<span class="tool-input-prompt-form-section__title">Вес ребра</span>
+								<div class="add-edge-prompt-window__edge-has-weight">
+									<div class="tool-input-prompt-form__radio-button-container">
+										<input type="radio" class="tool-input-prompt-form__radio-button" value="1" name="edge_has_weight">
+										<span class="tool-input-prompt-form__radio-button-label">Нагруженное</span>
+									</div>
 
-                                <div class="tool-input-prompt-form__radio-button-container">
-                                    <input checked type="radio" class="tool-input-prompt-form__radio-button" value="0" name="edge_has_weight">
-                                    <span class="tool-input-prompt-form__radio-button-label">Ненагруженное</span>
-                                </div>
-                            </div>
+									<div class="tool-input-prompt-form__radio-button-container">
+										<input checked type="radio" class="tool-input-prompt-form__radio-button" value="0" name="edge_has_weight">
+										<span class="tool-input-prompt-form__radio-button-label">Ненагруженное</span>
+									</div>
+								</div>
 
-                            <input type="number" name="edge_weight" value="0" class="tool-input-prompt-form__input add-edge-prompt-window__edge-weight-input">
-                        </div>
+								<input type="number" name="edge_weight" value="0" class="tool-input-prompt-form__input add-edge-prompt-window__edge-weight-input">
+							</div>
 
-                        <div class="tool-input-prompt-form__section">
-                            <span class="tool-input-prompt-form-section__title">Ориентация</span>
-                            <div class="add-edge-prompt-window__edge-oriented">
-                                <div class="tool-input-prompt-form__radio-button-container">
-                                    <input type="radio" class="tool-input-prompt-form__radio-button" value="1" name="edge_oriented">
-                                    <span class="tool-input-prompt-form__radio-button-label">Ориентированное</span>
-                                </div>
-        
-                                <div class="tool-input-prompt-form__radio-button-container">
-                                    <input checked type="radio" class="tool-input-prompt-form__radio-button" value="0" name="edge_oriented">
-                                    <span class="tool-input-prompt-form__radio-button-label">Неориентированное</span>
-                                </div>
-                            </div>
-                        </div>
+							<div class="tool-input-prompt-form__section">
+								<span class="tool-input-prompt-form-section__title">Ориентация</span>
+								<div class="add-edge-prompt-window__edge-oriented">
+									<div class="tool-input-prompt-form__radio-button-container">
+										<input type="radio" class="tool-input-prompt-form__radio-button" value="1" name="edge_oriented">
+										<span class="tool-input-prompt-form__radio-button-label">Ориентированное</span>
+									</div>
+			
+									<div class="tool-input-prompt-form__radio-button-container">
+										<input checked type="radio" class="tool-input-prompt-form__radio-button" value="0" name="edge_oriented">
+										<span class="tool-input-prompt-form__radio-button-label">Неориентированное</span>
+									</div>
+								</div>
+							</div>
 
-                        <button type="submit" class="tool-input-prompt-form__submit-button">OK</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-            </div>
+							<button type="submit" class="tool-input-prompt-form__submit-button">OK</button>
+						</form>
+					</div>
+				</div>
 
-            <div class="toolbar">
-                <div class="toolbar__toolgroups-tab">
-                    <button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="maintools">
-                        <img class="tab-button__image" src="/src/images/graph.svg">
-                        <div class="toolgroup-tab-button__text">Инструменты</div>
-                    </button>
+				<div class="toolbar">
+					<div class="toolbar__toolgroups-tab">
+						<button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="maintools">
+							<img class="tab-button__image" src="/src/images/graph.svg">
+							<div class="toolgroup-tab-button__text">Инструменты</div>
+						</button>
 
-                    <button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="project_tools">
-                        <img class="tab-button__image" src="/src/images/calculator.svg">
-                        <div class="toolgroup-tab-button__text">Проект</div>
-                    </button>
-                </div>
+						<button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="project_tools">
+							<img class="tab-button__image" src="/src/images/calculator.svg">
+							<div class="toolgroup-tab-button__text">Проект</div>
+						</button>
 
-                <div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="maintools">
-                    <div class="tools-tab__close-button-container">
-                        <button class="close-button tools-tab__close-button"></button>
-                    </div>
-                    
-                    <div class="tools-tab__section">
-                        <div class="tools-tab-section__title">Основное</div>
+						<button class="tab-button toolbar__toolgroup-tab-button" toolgroup-name="algorithms">
+							<img class="tab-button__image" src="/src/images/cogwheel.svg">
+							<div class="toolgroup-tab-button__text">Алгоритмы</div>
+						</button>
+					</div>
 
-                        <div class="tools-tab-section__tool-buttons">
-                            <button class="tab-button tools-tab__tool-button" toolname="move">
-                                <img class="tab-button__image" src="/src/images/move-tool.svg">
-                                <div class="tools-tab-button__text">Перемещать</div>
-                            </button>
+					<div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="maintools">
+						<div class="tools-tab__close-button-container">
+							<button class="close-button tools-tab__close-button"></button>
+						</div>
+						
+						<div class="tools-tab__section">
+							<div class="tools-tab-section__title">Основное</div>
 
-                            <button class="tab-button tools-tab__tool-button" toolname="delete">
-                                <img class="tab-button__image" src="/src/images/close-cross.svg">
-                                <div class="tools-tab-button__text">Удалить</div>
-                            </button>
-                        </div>
-                    </div>
+							<div class="tools-tab-section__tool-buttons">
+								<button class="tab-button tools-tab__tool-button" toolname="move">
+									<img class="tab-button__image" src="/src/images/move-tool.svg">
+									<div class="tools-tab-button__text">Перемещать</div>
+								</button>
 
-                    <div class="tools-tab__section">
-                        <div class="tools-tab-section__title">Граф</div>
+								<button class="tab-button tools-tab__tool-button" toolname="delete">
+									<img class="tab-button__image" src="/src/images/close-cross.svg">
+									<div class="tools-tab-button__text">Удалить</div>
+								</button>
+							</div>
+						</div>
 
-                        <div class="tools-tab-section__tool-buttons">
-                            <button class="tab-button tools-tab__tool-button" toolname="add_vertex">
-                                <img class="tab-button__image" src="/src/images/add-vertex-tool.svg">
-                                <div class="tools-tab-button__text">Вершина</div>
-                            </button>
+						<div class="tools-tab__section">
+							<div class="tools-tab-section__title">Граф</div>
 
-                            <button class="tab-button tools-tab__tool-button" toolname="add_edge">
-                                <img class="tab-button__image" src="/src/images/add-edge-tool.svg">
-                                <div class="tools-tab-button__text">Ребро</div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+							<div class="tools-tab-section__tool-buttons">
+								<button class="tab-button tools-tab__tool-button" toolname="add_vertex">
+									<img class="tab-button__image" src="/src/images/add-vertex-tool.svg">
+									<div class="tools-tab-button__text">Вершина</div>
+								</button>
 
-                <div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="project_tools">
-                    <div class="tools-tab__close-button-container">
-                        <button class="close-button tools-tab__close-button"></button>
-                    </div>
-                    
-                    <div class="tools-tab__section">
-                        <div class="tools-tab-section__tool-buttons">
-                            <button class="tab-button tools-tab__tool-button" toolname="import_project">
-                                <img class="tab-button__image" src="/src/images/upload.svg">
-                                <div class="tools-tab-button__text">Импорт</div>
-                            </button>
+								<button class="tab-button tools-tab__tool-button" toolname="add_edge">
+									<img class="tab-button__image" src="/src/images/add-edge-tool.svg">
+									<div class="tools-tab-button__text">Ребро</div>
+								</button>
+							</div>
+						</div>
+					</div>
 
-                            <button class="tab-button tools-tab__tool-button" toolname="export_project">
-                                <img class="tab-button__image" src="/src/images/download.svg">
-                                <div class="tools-tab-button__text">Экспорт</div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas-wrapper">
-                <canvas id="canvas"></canvas>
-            </div>
+					<div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="project_tools">
+						<div class="tools-tab__close-button-container">
+							<button class="close-button tools-tab__close-button"></button>
+						</div>
+						
+						<div class="tools-tab__section">
+							<div class="tools-tab-section__tool-buttons">
+								<button class="tab-button tools-tab__tool-button" toolname="import_project">
+									<img class="tab-button__image" src="/src/images/upload.svg">
+									<div class="tools-tab-button__text">Импорт</div>
+								</button>
+
+								<button class="tab-button tools-tab__tool-button" toolname="export_project">
+									<img class="tab-button__image" src="/src/images/download.svg">
+									<div class="tools-tab-button__text">Экспорт</div>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="toolbar__tools-tab toolbar__maintools_tab" toolgroup-name="algorithms">
+						<div class="tools-tab__close-button-container">
+							<button class="close-button tools-tab__close-button"></button>
+						</div>
+						
+						<div class="tools-tab__section">
+							<div class="tools-tab-section__tool-buttons">
+								<button class="tab-button tools-tab__tool-button" toolname="bfs">
+									<img class="tab-button__image" src="/src/images/loupe.svg">
+									<div class="tools-tab-button__text">Поиск в ширину</div>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="canvas-wrapper">
+					<canvas id="canvas"></canvas>
+				</div>
+				
+			</div>
         </main>
     </body>
 </html>

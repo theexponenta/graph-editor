@@ -19,3 +19,15 @@ export function downloadFile(filename, content_type, content) {
 
     anchor.click();
 }
+
+
+export function formatString(template, values) {
+    let formatted = template;
+
+    for (let key in values) {
+        let regexp = new RegExp('\\{' + key + '\\}', 'gi');
+        formatted = formatted.replace(regexp, values[key]);
+    }
+
+    return formatted;
+}

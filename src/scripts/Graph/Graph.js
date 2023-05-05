@@ -85,3 +85,23 @@ Graph.fromObject = function(object) {
 
     return graph;
 }
+
+
+Graph.prototype.toAdjacencyList = function() {
+    let adjacency_list = new WeakMap();
+
+    for (let vertex of this.vertices) {
+        adjacency_list.set(vertex, []);
+    }
+
+    for (let edge of this.edges) {
+        let vertex1_neighbours = adjacency_list.get(edge.vertex1);
+        let vertex2_neighbours = adjacency_list.get(edge.vertex2);
+
+        vertex1_neighbours.push(edge.vertex2);
+        if (!edge.oriented)
+            vertex2_neighbours.push(edge.vertex1);
+    }
+
+    return adjacency_list;
+}

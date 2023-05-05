@@ -1,4 +1,3 @@
-import createStateMachine from '../../StateMachine/StateMachine.js';
 import BaseTool from '../BaseTool.js';
 import Vertex from '../../Graph/Vertex/Vertex.js';
 import Edge from '../../Graph/Edge/Edge.js';
